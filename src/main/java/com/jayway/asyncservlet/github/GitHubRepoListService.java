@@ -15,12 +15,7 @@ public class GitHubRepoListService implements RepoListService {
     // https://developer.github.com/v3/#pagination
     // https://developer.github.com/v3/#rate-limiting
     private static final String QUESTIONS_URL = "https://api.github.com/search/repositories?q={query}";
-    private final AsyncRestTemplate asyncRestTemplate;
-
-    public GitHubRepoListService(AsyncRestTemplate asyncRestTemplate)
-    {
-        this.asyncRestTemplate = asyncRestTemplate;
-    }
+    private final AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
 
     @Override
     public ListenableFuture<RepoListDto> search(String query) {

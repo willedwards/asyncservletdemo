@@ -17,14 +17,10 @@ public class Config
 {
     private static final Logger log = LoggerFactory.getLogger(Config.class);
 
-    @Bean
-    AsyncRestTemplate asyncRestTemplate() {
-        return new AsyncRestTemplate();
-    }
 
 
     @Bean
-    RepoListService buildRepoListService(AsyncRestTemplate asyncRestTemplate){
-        return new GitHubRepoListService(asyncRestTemplate);
+    RepoListService buildRepoListService(){
+        return new GitHubRepoListService();
     }
 }
