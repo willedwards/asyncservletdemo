@@ -20,4 +20,12 @@ public class RepoListDto {
         this.nbrOfRepositories = nbrOfRepositories;
         this.repositories = repositories;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("RepoListDto{" + "query='" + query + '\'' + ", nbrOfRepositories=" + nbrOfRepositories + ", repositories=" + repositories + '}');
+        repositories.stream().forEach( r -> sb.append(r.toString()));
+        return sb.toString();
+    }
 }

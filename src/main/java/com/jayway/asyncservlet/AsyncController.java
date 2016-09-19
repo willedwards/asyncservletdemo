@@ -23,12 +23,14 @@ class AsyncController {
 
     @RequestMapping("/async")
     DeferredResult<ResponseEntity<?>> async(@RequestParam("q") String query) {
+        log.info("q = " + query);
         DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>();
         ListenableFuture<RepoListDto> repositoryListDto = repoListService.search(query);
         repositoryListDto.addCallback(
                 new ListenableFutureCallback<RepoListDto>() {
                     @Override
                     public void onSuccess(RepoListDto result) {
+                        log.info("success called");
                         ResponseEntity<RepoListDto> responseEntity = new ResponseEntity<>(result, HttpStatus.OK);
                         deferredResult.setResult(responseEntity);
                     }

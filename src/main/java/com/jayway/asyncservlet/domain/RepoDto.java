@@ -28,4 +28,9 @@ public class RepoDto {
         this.ownerUrl = ownerUrl;
         this.ownerAvatar = ownerAvatar;
     }
+
+    @Override
+    public String toString() {
+        return "RepoDto{" + "name='" + name + '\'' + ", url=" + url + ", description='" + description + '\'' + ", owner='" + owner + '\'' + ", ownerUrl=" + ownerUrl + ", ownerAvatar=" + ownerAvatar + '}';
+    }
 }
