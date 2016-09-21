@@ -18,8 +18,13 @@ import org.springframework.web.context.request.async.DeferredResult;
 class AsyncController {
     private static final Logger log = LoggerFactory.getLogger(AsyncController.class);
 
+
+    private final RepoListService repoListService;
+
     @Autowired
-    private RepoListService repoListService;
+    public AsyncController(RepoListService repoListService) {
+        this.repoListService = repoListService;
+    }
 
     @RequestMapping("/async")
     DeferredResult<ResponseEntity<?>> async(@RequestParam("q") String query) {
