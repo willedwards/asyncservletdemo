@@ -28,4 +28,9 @@ public class RepoListDto {
         repositories.stream().forEach( r -> sb.append(r.toString()));
         return sb.toString();
     }
+
+    public int getNbrOfRepositories()
+    {
+        return nbrOfRepositories;
+    }
 }

@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -77,7 +76,7 @@ public class GitHubMockService implements RepoListService
 
          log.info("Thread " + Thread.currentThread().getName() + "finished adding callback");
 
-        return new AsyncResult(deferredResult);
+        return task;
 
     }
 }

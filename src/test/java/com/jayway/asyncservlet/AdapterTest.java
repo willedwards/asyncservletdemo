@@ -9,9 +9,7 @@ import com.jayway.asyncservlet.domain.RepoListService;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.concurrent.ExecutionException;
 
@@ -36,15 +34,10 @@ public class AdapterTest
 
         log.info("Thread " + Thread.currentThread().getName() + "looking at result");
 
-        Object result = repositoryListDto.get();
+        RepoListDto result = (RepoListDto)repositoryListDto.get();
         assertNotNull(result);
 
-        DeferredResult res = (DeferredResult)result;
-        ResponseEntity< RepoListDto> list = (ResponseEntity< RepoListDto>)res.getResult();
-        assertNotNull(list);
-
-        RepoListDto repoListDto = list.getBody();
-        assertEquals(2,repoListDto.getNbrOfRepositories());
+        assertEquals(2,result.getNbrOfRepositories());
 
     }
 }
