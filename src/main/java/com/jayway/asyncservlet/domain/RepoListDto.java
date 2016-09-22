@@ -1,8 +1,10 @@
 package com.jayway.asyncservlet.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.ImmutableList;
 
 import java.util.List;
+
 
 public class RepoListDto {
 
@@ -32,5 +34,9 @@ public class RepoListDto {
     public int getNbrOfRepositories()
     {
         return nbrOfRepositories;
+    }
+
+    public List<RepoDto> getRepositories(){
+        return ImmutableList.copyOf(repositories);
     }
 }
