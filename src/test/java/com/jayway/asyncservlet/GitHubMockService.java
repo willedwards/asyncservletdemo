@@ -16,6 +16,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.concurrent.Callable;
+import java.util.function.Function;
 
 
 public class GitHubMockService implements RepoListService
@@ -31,7 +32,7 @@ public class GitHubMockService implements RepoListService
     }
 
     @Override
-    public ListenableFuture<RepoListDto> search(String query)
+    public ListenableFuture<RepoListDto> search(String query, Function adapt)
     {
         ListenableFuture<RepoListDto> task = simpleAsyncTaskExecutor.submitListenable(new Callable<RepoListDto>() {
             @Override

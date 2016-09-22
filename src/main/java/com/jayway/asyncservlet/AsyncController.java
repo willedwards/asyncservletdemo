@@ -59,10 +59,9 @@ class AsyncController {
         return deferredResult;
     }
 
-    public static Function adaptFunction(String query){
+    public static Function<GitHubItems, RepoListDto> adaptFunction(String query){
         return items -> {
-                          List<RepoDto> repoDtos = items.items( ).stream( ).map(
-                          githubItem2RepoDtoFunction).collect(Collectors.toList( ) );
+                          List<RepoDto> repoDtos = items.items( ).stream( ).map(githubItem2RepoDtoFunction).collect(Collectors.toList( ) );
                           return new RepoListDto( query, items.totalCount( ), repoDtos );
                 };
     }
