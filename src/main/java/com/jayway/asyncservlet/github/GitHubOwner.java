@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-class GitHubOwner {
+public class GitHubOwner {
 
     @JsonProperty("login")
     private String userName;
@@ -17,15 +17,15 @@ class GitHubOwner {
     @JsonProperty("avatar_url")
     private URL avatarUrl;
 
-    String userName() {
+    public String userName() {
         return userName;
     }
 
-    URL url() {
+    public URL url() {
         return url;
     }
 
-    URL avatarUrl() {
+    public URL avatarUrl() {
         return avatarUrl;
     }
 }

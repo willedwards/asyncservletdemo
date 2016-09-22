@@ -2,7 +2,10 @@ package com.jayway.asyncservlet.domain;
 
 import org.springframework.util.concurrent.ListenableFuture;
 
-public interface RepoListService {
+import java.util.function.Function;
 
-    ListenableFuture<RepoListDto> search(String query);
+public interface RepoListService<ITEM, DTO> {
+
+    ListenableFuture<DTO> search(String query, Function<ITEM, DTO> adapt);
+
 }

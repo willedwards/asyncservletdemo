@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.client.AsyncRestTemplate;
 
-public class GitHubRepoListService implements RepoListService {
+import java.util.function.Function;
+
+public class GitHubRepoListService implements RepoListService<GitHubItems, RepoListDto> {
     private static final Logger log = LoggerFactory.getLogger(GitHubRepoListService.class);
 
     // API spec https://developer.github.com/v3/search/#search-repositories
@@ -23,9 +25,9 @@ public class GitHubRepoListService implements RepoListService {
     }
 
     @Override
-    public ListenableFuture<RepoListDto> search(String query) {
+    public ListenableFuture<RepoListDto> search(String query, Function<GitHubItems, RepoListDto> mapping) {
         ListenableFuture<ResponseEntity<GitHubItems>> gitHubItems = asyncRestTemplate.getForEntity(QUESTIONS_URL, GitHubItems.class, query);
         log.info("called async");
-        return new RepositoryListDtoAdapter(query, gitHubItems);
+        return new RepositoryListDtoAdapter(gitHubItems, mapping);
     }
 }

@@ -55,7 +55,7 @@ public class AdapterTest
         //fire the search
         log.info("Thread " + Thread.currentThread().getName() + "about to call search");
 
-        ListenableFuture<?> repositoryListDto = repoListService.search("spring+boot");
+        ListenableFuture<?> repositoryListDto = repoListService.search("spring+boot", AsyncController.adaptFunction("spring+boot"));
 
         log.info("Thread " + Thread.currentThread().getName() + "looking at result");
 

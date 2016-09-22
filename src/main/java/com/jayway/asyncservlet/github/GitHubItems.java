@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-class GitHubItems {
+public class GitHubItems {
 
     @JsonProperty("total_count")
     private int totalCount;
@@ -14,11 +14,11 @@ class GitHubItems {
     @JsonProperty("items")
     private List<GitHubItem> items;
 
-    int totalCount() {
+    public int totalCount() {
         return totalCount;
     }
 
-    List<GitHubItem> items() {
+    public List<GitHubItem> items() {
         return items;
     }
 

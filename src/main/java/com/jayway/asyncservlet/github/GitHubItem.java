@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.net.URL;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-class GitHubItem {
+public class GitHubItem {
 
     @JsonProperty("full_name")
     private String fullName;
@@ -20,19 +20,19 @@ class GitHubItem {
     @JsonProperty("owner")
     private GitHubOwner owner;
 
-    String fullName() {
+    public String fullName() {
         return fullName;
     }
 
-    URL getUrl() {
+    public URL getUrl() {
         return url;
     }
 
-    String description() {
+    public String description() {
         return description;
     }
 
-    GitHubOwner owner() {
+    public GitHubOwner owner() {
         return owner;
     }
 }
