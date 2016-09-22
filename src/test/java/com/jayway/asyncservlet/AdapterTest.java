@@ -35,22 +35,18 @@ public class AdapterTest
     RepoDto item2;
 
     @Before
-    public void init(){
+    public void init() throws MalformedURLException
+    {
         cannedResponse = buildFakeData();
         repoListService = new GitHubMockService(cannedResponse);
     }
 
-    private RepoListDto buildFakeData(){
-        try {
-            item1 = new RepoDto("name1", new URL("http://url1"), "desc1", "owner1", new URL("http://owner1URL"), new URL("http://owner1Avatar"));
-            item2 = new RepoDto("name2", new URL("http://url2"), "desc2", "owner2",new URL("http://owner2URL"),new URL("http://owner2Avatar"));
-             RepoListDto repoList = new RepoListDto("spring+boot", 2, Arrays.asList(item1, item2));
-             return repoList;
-         }
-         catch (MalformedURLException e) {
-             log.error("failed");
-             throw new RuntimeException(e);
-         }
+    private RepoListDto buildFakeData() throws MalformedURLException
+    {
+        item1 = new RepoDto("name1", new URL("http://url1"), "desc1", "owner1", new URL("http://owner1URL"), new URL("http://owner1Avatar"));
+        item2 = new RepoDto("name2", new URL("http://url2"), "desc2", "owner2", new URL("http://owner2URL"), new URL("http://owner2Avatar"));
+        RepoListDto repoList = new RepoListDto("spring+boot", 2, Arrays.asList(item1, item2));
+        return repoList;
     }
 
     @Test
@@ -63,10 +59,10 @@ public class AdapterTest
 
         log.info("Thread " + Thread.currentThread().getName() + "looking at result");
 
-        RepoListDto result = (RepoListDto)repositoryListDto.get();
+        RepoListDto result = (RepoListDto) repositoryListDto.get();
 
         assertNotNull(result);
-        assertEquals(2,result.getNbrOfRepositories());
+        assertEquals(2, result.getNbrOfRepositories());
         List<RepoDto> bothRepos = result.getRepositories();
         assertTrue(bothRepos.contains(item1));
         assertTrue(bothRepos.contains(item2));
