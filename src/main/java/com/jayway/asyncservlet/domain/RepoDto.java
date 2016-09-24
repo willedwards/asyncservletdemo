@@ -12,7 +12,6 @@ public class RepoDto {
     private final URL url;
     @JsonProperty("description")
     private final String description;
-
     @JsonProperty("owner")
     private final String owner;
     @JsonProperty("owner_url")
@@ -27,6 +26,30 @@ public class RepoDto {
         this.owner = owner;
         this.ownerUrl = ownerUrl;
         this.ownerAvatar = ownerAvatar;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public URL getUrl() {
+        return url;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public URL getOwnerUrl() {
+        return ownerUrl;
+    }
+
+    public URL getOwnerAvatar() {
+        return ownerAvatar;
     }
 
     @Override
