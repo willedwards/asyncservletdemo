@@ -4,32 +4,29 @@ package com.jayway.asyncservlet;/**
  * Time: 11:11
  */
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.concurrent.ExecutionException;
-
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.concurrent.ListenableFuture;
-
 import com.jayway.asyncservlet.domain.RepoListDto;
 import com.jayway.asyncservlet.domain.RepoListService;
 import com.jayway.asyncservlet.github.GitHubItems;
+import org.apache.commons.io.IOUtils;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.util.concurrent.ListenableFuture;
 
+import java.io.IOException;
+
+import static org.junit.Assert.*;
 
 public class GitHubServiceTest
 {
     private static final Logger log = LoggerFactory.getLogger(GitHubServiceTest.class);
 
     @Test
-    public void shouldMapItemToDto() throws InterruptedException, ExecutionException
+    public void shouldMapItemToDto() throws Exception
     {
-        String json = "{ \"total_count\": 1, \"items\": ["
-                + "{ \"full_name\": \"test1/name1\", \"description\": \"description1\", \"html_url\": \"https://url1\","
-                + " \"owner\": { \"login\": \"test1\", \"avatar_url\": \"https://avatar1\", \"html_url\": \"https://owner1\" }" + "} ] }";
+        String json = resourceJsonFileToString("githubresponse.json");
 
         RepoListService<GitHubItems, RepoListDto> tst = new GitHubMockService(json);
         //fire the search
@@ -50,5 +47,10 @@ public class GitHubServiceTest
         assertEquals("test1", result.getRepositories( ).get( 0 ).getOwner( ));
         assertEquals("https://owner1", result.getRepositories( ).get( 0 ).getOwnerUrl( ).toString( ));
         assertEquals("https://avatar1", result.getRepositories( ).get( 0 ).getOwnerAvatar( ).toString( ));
+    }
+
+    private static String resourceJsonFileToString(String filenameIncludingSuffix) throws IOException {
+        Resource resource = new ClassPathResource(filenameIncludingSuffix);
+         return IOUtils.toString(resource.getInputStream(), "UTF-8");
     }
 }
