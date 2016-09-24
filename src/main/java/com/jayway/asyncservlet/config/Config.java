@@ -4,7 +4,9 @@ package com.jayway.asyncservlet.config;/**
  * Time: 10:21
  */
 
+import com.jayway.asyncservlet.domain.RepoListDto;
 import com.jayway.asyncservlet.domain.RepoListService;
+import com.jayway.asyncservlet.github.GitHubItems;
 import com.jayway.asyncservlet.github.GitHubRepoListService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +21,7 @@ public class Config
     }
 
     @Bean
-    RepoListService buildRepoListService(AsyncRestTemplate asyncRestTemplate){
+    RepoListService<GitHubItems, RepoListDto> buildRepoListService(AsyncRestTemplate asyncRestTemplate){
         return new GitHubRepoListService(asyncRestTemplate);
     }
 }

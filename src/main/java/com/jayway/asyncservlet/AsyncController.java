@@ -26,11 +26,10 @@ import java.util.stream.Collectors;
 class AsyncController {
     private static final Logger log = LoggerFactory.getLogger(AsyncController.class);
 
-
-    private final RepoListService repoListService;
+    private final RepoListService<GitHubItems, RepoListDto> repoListService;
 
     @Autowired
-    public AsyncController(RepoListService repoListService) {
+    public AsyncController(RepoListService<GitHubItems, RepoListDto> repoListService) {
         this.repoListService = repoListService;
     }
 
