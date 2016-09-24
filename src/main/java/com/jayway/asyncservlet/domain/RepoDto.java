@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URL;
 
-public class RepoDto {
+class RepoDto {
 
     @JsonProperty("name")
     private final String name;
@@ -28,27 +28,27 @@ public class RepoDto {
         this.ownerAvatar = ownerAvatar;
     }
     
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public URL getUrl() {
+    URL getUrl() {
         return url;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
-    public String getOwner() {
+    String getOwner() {
         return owner;
     }
 
-    public URL getOwnerUrl() {
+    URL getOwnerUrl() {
         return ownerUrl;
     }
 
-    public URL getOwnerAvatar() {
+    URL getOwnerAvatar() {
         return ownerAvatar;
     }
 
@@ -70,9 +70,7 @@ public class RepoDto {
             return false;
         if (!owner.equals(repoDto.owner))
             return false;
-        if (!ownerUrl.equals(repoDto.ownerUrl))
-            return false;
-        return ownerAvatar.equals(repoDto.ownerAvatar);
+        return ownerUrl.equals(repoDto.ownerUrl) && ownerAvatar.equals(repoDto.ownerAvatar);
 
     }
 

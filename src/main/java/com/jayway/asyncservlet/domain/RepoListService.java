@@ -8,4 +8,7 @@ public interface RepoListService<ITEM, DTO> {
 
     ListenableFuture<DTO> search(String query, Function<ITEM, DTO> adapt);
 
+
 }
+
+

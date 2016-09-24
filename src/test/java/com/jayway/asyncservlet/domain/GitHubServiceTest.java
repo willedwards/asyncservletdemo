@@ -1,11 +1,10 @@
-package com.jayway.asyncservlet;/**
+package com.jayway.asyncservlet.domain;/**
  * Author: wge
  * Date: 20/09/2016
  * Time: 11:11
  */
 
-import com.jayway.asyncservlet.domain.RepoListDto;
-import com.jayway.asyncservlet.domain.RepoListService;
+import com.jayway.asyncservlet.GitHubMockService;
 import com.jayway.asyncservlet.github.GitHubItems;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
@@ -32,7 +31,7 @@ public class GitHubServiceTest
         //fire the search
         log.info("Thread " + Thread.currentThread().getName() + "about to call search");
 
-        ListenableFuture<?> repositoryListDto = tst.search("spring+boot", AsyncController.adaptFunction("spring+boot"));
+        ListenableFuture<?> repositoryListDto = tst.search("spring+boot", GitDTOMapping.adaptFunction("spring+boot"));
 
         log.info("Thread " + Thread.currentThread().getName() + "looking at result");
 

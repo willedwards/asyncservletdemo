@@ -6,7 +6,8 @@ import com.google.common.collect.ImmutableList;
 import java.util.List;
 
 
-public class RepoListDto {
+public class RepoListDto
+{
 
     @JsonProperty("query")
     private final String query;
@@ -15,28 +16,31 @@ public class RepoListDto {
     private final int nbrOfRepositories;
 
     @JsonProperty("repositories")
-    private final  List<RepoDto> repositories;
+    private final List<RepoDto> repositories;
 
-    public RepoListDto(String query, int nbrOfRepositories, List<RepoDto> repositories) {
+    public RepoListDto(String query, int nbrOfRepositories, List<RepoDto> repositories)
+    {
         this.query = query;
         this.nbrOfRepositories = nbrOfRepositories;
         this.repositories = repositories;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         StringBuilder sb = new StringBuilder();
         sb.append("RepoListDto{" + "query='" + query + '\'' + ", nbrOfRepositories=" + nbrOfRepositories + ", repositories=" + repositories + '}');
-        repositories.stream().forEach( r -> sb.append(r.toString()));
+        repositories.stream().forEach(r -> sb.append(r.toString()));
         return sb.toString();
     }
 
-    public int getNbrOfRepositories()
+    int getNbrOfRepositories()
     {
         return nbrOfRepositories;
     }
 
-    public List<RepoDto> getRepositories(){
+    List<RepoDto> getRepositories()
+    {
         return ImmutableList.copyOf(repositories);
     }
 }
