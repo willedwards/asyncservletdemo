@@ -2,6 +2,7 @@ package com.jayway.asyncservlet.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 class RepoDto {
@@ -19,13 +20,14 @@ class RepoDto {
     @JsonProperty("owner_avatar")
     private final URL ownerAvatar;
 
-    public RepoDto(String name, URL url, String description, String owner, URL ownerUrl, URL ownerAvatar) {
+    public RepoDto(String name, URL url, String description, Object owner, Object ownerUrl, Object ownerAvatar) throws MalformedURLException
+    {
         this.name = name;
         this.url = url;
         this.description = description;
-        this.owner = owner;
-        this.ownerUrl = ownerUrl;
-        this.ownerAvatar = ownerAvatar;
+        this.owner = (String)owner;
+        this.ownerUrl = new URL((String)ownerUrl);
+        this.ownerAvatar = new URL((String)ownerAvatar);
     }
     
     String getName() {

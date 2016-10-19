@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URL;
+import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GitHubItem {
@@ -18,7 +19,7 @@ public class GitHubItem {
     private String description;
 
     @JsonProperty("owner")
-    private GitHubOwner owner;
+    private Map owner;
 
     public String fullName() {
         return fullName;
@@ -32,7 +33,7 @@ public class GitHubItem {
         return description;
     }
 
-    public GitHubOwner owner() {
+    public Map owner() {
         return owner;
     }
 }
